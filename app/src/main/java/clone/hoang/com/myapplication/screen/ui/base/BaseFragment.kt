@@ -5,6 +5,7 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,8 +23,11 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
             setVariable(bindingVariable, viewModel)
             executePendingBindings()
         }
+        initComps()
         return viewBinding.root
     }
+
+    abstract fun initComps()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +40,14 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
 
     fun addFragment(fragment: Fragment, TAG: String?, addToBackStack: Boolean = false) {
         activity?.supportFragmentManager?.beginTransaction()?.apply {
-            add(R.id.container, fragment, TAG)
+            add(R.id.root_contaier, fragment, TAG)
             commitTransaction(this, addToBackStack)
         }
     }
 
     fun replaceFragment(fragment: Fragment, TAG: String?, addToBackStack: Boolean = false) {
         activity?.supportFragmentManager?.beginTransaction()?.apply {
-            replace(R.id.container, fragment, tag)
+            replace(R.id.root_contaier, fragment, tag)
             commitTransaction(this, addToBackStack)
         }
 
