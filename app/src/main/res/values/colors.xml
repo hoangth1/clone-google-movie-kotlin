@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="mineShaft">#222222</color>
+    <color name="codGray">#151515</color>
+    <color name="mercury">#e2e0e0</color>
 </resources>
